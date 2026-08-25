@@ -2,6 +2,8 @@ import type { RouterData, ListContext, Options, RouterResType } from "../types.j
 import { get } from "../utils/getData.js";
 import { getTime } from "../utils/getTime.js";
 
+export const title = "AcFun";
+
 const typeMap: Record<string, string> = {
   "-1": "综合",
   "155": "番剧",

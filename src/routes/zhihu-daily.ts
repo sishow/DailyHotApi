@@ -1,6 +1,8 @@
 import type { RouterData } from "../types.js";
 import { get } from "../utils/getData.js";
 
+export const title = "知乎日报";
+
 export const handleRoute = async (_: undefined, noCache: boolean) => {
   const listData = await getList(noCache);
   const routeData: RouterData = {

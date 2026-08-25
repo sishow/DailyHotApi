@@ -2,6 +2,8 @@ import type { RouterData, ListContext, Options } from "../types.js";
 import { get } from "../utils/getData.js";
 import { getTime } from "../utils/getTime.js";
 
+export const title = "少数派";
+
 export const handleRoute = async (c: ListContext, noCache: boolean) => {
   const type = c.req.query("type") || "热门文章";
   const listData = await getList({ type }, noCache);

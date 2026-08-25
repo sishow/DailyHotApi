@@ -92,25 +92,36 @@ for (let index = 0; index < allRoutePath.length; index++) {
 }
 
 // 获取全部路由
-app.get("/all", (c) =>
-  c.json(
+app.get("/all", async (c) => {
+  const routes = await Promise.all(
+    allRoutePath.map(async (path) => {
+      // 是否处于排除名单
+      if (excludeRoutes.includes(path)) {
+        return {
+          name: path,
+          title: "",
+          path: undefined,
+          message: "This interface is temporarily offline",
+        };
+      }
+      // 动态导入路由模块获取 title
+      try {
+        const module = await import(`./routes/${path}.js`);
+        const title = module.title || "";
+        return { name: path, title, path: `/${path}` };
+      } catch {
+        return { name: path, title: "", path: `/${path}` };
+      }
+    }),
+  );
+  return c.json(
     {
       code: 200,
-      count: allRoutePath.length,
-      routes: allRoutePath.map((path) => {
-        // 是否处于排除名单
-        if (excludeRoutes.includes(path)) {
-          return {
-            name: path,
-            path: undefined,
-            message: "This interface is temporarily offline",
-          };
-        }
-        return { name: path, path: `/${path}` };
-      }),
+      count: routes.length,
+      routes,
     },
     200,
-  ),
-);
+  );
+});
 
 export default app;

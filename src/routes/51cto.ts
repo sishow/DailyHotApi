@@ -3,6 +3,8 @@ import { getToken, sign } from "../utils/getToken/51cto.js";
 import { get } from "../utils/getData.js";
 import { getTime } from "../utils/getTime.js";
 
+export const title = "51CTO";
+
 export const handleRoute = async (_: undefined, noCache: boolean) => {
   const listData = await getList(noCache);
   const routeData: RouterData = {

@@ -2,6 +2,8 @@ import type { RouterData } from "../types.js";
 import { load } from "cheerio";
 import { get } from "../utils/getData.js";
 
+export const title = "豆瓣电影";
+
 export const handleRoute = async (_: undefined, noCache: boolean) => {
   const listData = await getList(noCache);
   const routeData: RouterData = {

@@ -3,6 +3,8 @@ import { get } from "../utils/getData.js";
 import getWereadID from "../utils/getToken/weread.js";
 import { getTime } from "../utils/getTime.js";
 
+export const title = "微信读书";
+
 const typeMap: Record<string, string> = {
   rising: "飙升榜",
   hot_search: "热搜榜",
@@ -49,7 +51,7 @@ interface WereadResponse {
   books: WereadBookItem[];
 }
 
-const getList = async (noCache: boolean, type='rising') => {
+const getList = async (noCache: boolean, type = "rising") => {
   const url = `https://weread.qq.com/web/bookListInCategory/${type}?rank=1`;
   const result = await get<WereadResponse>({
     url,

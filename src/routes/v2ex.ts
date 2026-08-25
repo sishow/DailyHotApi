@@ -1,6 +1,8 @@
 import type { RouterData, ListContext, Options } from "../types.js";
 import { get } from "../utils/getData.js";
 
+export const title = "V2EX";
+
 export const handleRoute = async (c: ListContext, noCache: boolean) => {
   const type = c.req.query("type") || "hot";
   const listData = await getList({ type }, noCache);

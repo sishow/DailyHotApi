@@ -2,6 +2,8 @@ import type { RouterData, ListContext, Options } from "../types.js";
 import { parseChineseNumber } from "../utils/getNum.js";
 import { get } from "../utils/getData.js";
 
+export const title = "新浪网";
+
 const typeMap: Record<string, string> = {
   all: "新浪热榜",
   hotcmnt: "热议榜",

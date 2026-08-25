@@ -3,6 +3,8 @@ import { get } from "../utils/getData.js";
 import { getTime } from "../utils/getTime.js";
 import { parseRSS } from "../utils/parseRSS.js";
 
+export const title = "纽约时报";
+
 const areaMap: Record<string, string> = {
   china: "中文网",
   global: "全球版",

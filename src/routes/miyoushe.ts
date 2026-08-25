@@ -2,6 +2,8 @@ import type { RouterData, ListContext, Options, RouterResType } from "../types.j
 import { get } from "../utils/getData.js";
 import { getTime } from "../utils/getTime.js";
 
+export const title = "米游社";
+
 // 游戏分类
 const gameMap: Record<string, string> = {
   "1": "崩坏3",

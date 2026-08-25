@@ -2,6 +2,8 @@ import type { RouterData, ListContext, Options } from "../types.js";
 import { get } from "../utils/getData.js";
 import { getTime } from "../utils/getTime.js";
 
+export const title = "中央气象台";
+
 export const handleRoute = async (c: ListContext, noCache: boolean) => {
   const province = c.req.query("province") || "";
   const listData = await getList({ province }, noCache);

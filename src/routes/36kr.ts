@@ -2,6 +2,8 @@ import type { RouterData, ListContext, Options, RouterResType } from "../types.j
 import { post } from "../utils/getData.js";
 import { getTime } from "../utils/getTime.js";
 
+export const title = "36氪";
+
 const typeMap: Record<string, string> = {
   hot: "人气榜",
   video: "视频榜",

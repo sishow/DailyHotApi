@@ -3,6 +3,8 @@ import { get } from "../utils/getData.js";
 import { parseChineseNumber } from "../utils/getNum.js";
 import UserAgent from "user-agents";
 
+export const title = "快手";
+
 const APOLLO_STATE_PREFIX = "window.__APOLLO_STATE__=";
 
 export const handleRoute = async (_: undefined, noCache: boolean) => {
@@ -56,7 +58,9 @@ const getList = async (noCache: boolean) => {
   const sentinelA = scriptSlice.indexOf(";(function(");
   const sentinelB = scriptSlice.indexOf("</script>");
   const cutIndex =
-    sentinelA !== -1 && sentinelB !== -1 ? Math.min(sentinelA, sentinelB) : Math.max(sentinelA, sentinelB);
+    sentinelA !== -1 && sentinelB !== -1
+      ? Math.min(sentinelA, sentinelB)
+      : Math.max(sentinelA, sentinelB);
   if (cutIndex === -1) {
     throw new Error("快手页面结构变更，未找到 APOLLO_STATE 结束标记");
   }
@@ -69,16 +73,13 @@ const getList = async (noCache: boolean) => {
     jsonObject = JSON.parse(cleanRaw)["defaultClient"];
   } catch (err) {
     const msg =
-      err instanceof Error
-        ? `${err.message} | snippet=${raw.slice(0, 200)}...`
-        : "未知错误";
+      err instanceof Error ? `${err.message} | snippet=${raw.slice(0, 200)}...` : "未知错误";
     throw new Error(`快手数据解析失败: ${msg}`);
   }
   // 获取所有分类
   const allItems =
     jsonObject['$ROOT_QUERY.visionHotRank({"page":"home"})']?.items ||
-    jsonObject['$ROOT_QUERY.visionHotRank({"page":"home","platform":"web"})']
-      ?.items ||
+    jsonObject['$ROOT_QUERY.visionHotRank({"page":"home","platform":"web"})']?.items ||
     [];
   // 获取全部热榜
   allItems.forEach((item: { id: string }) => {

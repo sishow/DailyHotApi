@@ -2,6 +2,8 @@ import type { ListItem, RouterData } from "../types.js";
 import { get } from "../utils/getData.js";
 import { load } from "cheerio";
 
+export const title = "Product Hunt";
+
 export const handleRoute = async (_: undefined, noCache: boolean) => {
   const listData = await getList(noCache);
   const routeData: RouterData = {
@@ -22,8 +24,9 @@ const getList = async (noCache: boolean) => {
     url: baseUrl,
     noCache,
     headers: {
-      userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
-    }
+      userAgent:
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+    },
   });
 
   try {

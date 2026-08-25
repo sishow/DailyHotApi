@@ -2,6 +2,8 @@ import type { RouterData } from "../types.js";
 import { getTime } from "../utils/getTime.js";
 import axios from "axios";
 
+export const title = "虎嗅";
+
 export const handleRoute = async (_: undefined, noCache: boolean) => {
   const listData = await getList(noCache);
   const routeData: RouterData = {

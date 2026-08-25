@@ -3,6 +3,8 @@ import { load } from "cheerio";
 import { get } from "../utils/getData.js";
 import { getCurrentDateTime } from "../utils/getTime.js";
 
+export const title = "历史上的今天";
+
 export const handleRoute = async (c: ListContext, noCache: boolean) => {
   // 获取日期
   const day = c.req.query("day") || getCurrentDateTime(true).day;

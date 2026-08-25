@@ -1,6 +1,8 @@
 import type { RouterData, ListContext, Options, RouterResType } from "../types.js";
 import { get } from "../utils/getData.js";
 
+export const title = "百度";
+
 const typeMap: Record<string, string> = {
   realtime: "热搜",
   novel: "小说",

@@ -2,6 +2,8 @@ import type { RouterData, ListContext, Options } from "../types.js";
 import { get } from "../utils/getData.js";
 import { getTime } from "../utils/getTime.js";
 
+export const title = "HelloGitHub";
+
 export const handleRoute = async (c: ListContext, noCache: boolean) => {
   const sort = c.req.query("sort") || "featured";
   const listData = await getList({ sort }, noCache);

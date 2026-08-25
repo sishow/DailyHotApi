@@ -2,6 +2,8 @@ import type { RouterData } from "../types.js";
 import { post } from "../utils/getData.js";
 import { getTime } from "../utils/getTime.js";
 
+export const title = "NGA";
+
 export const handleRoute = async (_: undefined, noCache: boolean) => {
   const listData = await getList(noCache);
   const routeData: RouterData = {

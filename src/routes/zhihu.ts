@@ -1,7 +1,9 @@
 import type { RouterData } from "../types.js";
 import { get } from "../utils/getData.js";
 import { getTime } from "../utils/getTime.js";
-import { config } from "../config.js"
+import { config } from "../config.js";
+
+export const title = "知乎";
 
 export const handleRoute = async (_: undefined, noCache: boolean) => {
   const listData = await getList(noCache);
@@ -41,14 +43,14 @@ interface ZhihuResponse {
 const getList = async (noCache: boolean) => {
   const url = `https://api.zhihu.com/topstory/hot-lists/total?limit=50`;
   const result = await get<ZhihuResponse>({
-      url,
-      noCache,
-      ...(config.ZHIHU_COOKIE && {
-        headers: {
-          Cookie: config.ZHIHU_COOKIE
-        }
-      })
-    });
+    url,
+    noCache,
+    ...(config.ZHIHU_COOKIE && {
+      headers: {
+        Cookie: config.ZHIHU_COOKIE,
+      },
+    }),
+  });
   const list = result.data.data;
   return {
     ...result,

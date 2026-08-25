@@ -2,6 +2,8 @@ import type { RouterData } from "../types.js";
 import { get } from "../utils/getData.js";
 import { getTime } from "../utils/getTime.js";
 
+export const title = "中国地震台";
+
 const mappings: Record<string, string> = {
   O_TIME: "发震时刻(UTC+8)",
   LOCATION_C: "参考位置",
@@ -45,9 +47,7 @@ const getList = async (noCache: boolean) => {
       const contentBuilder: string[] = [];
       const { NEW_DID, LOCATION_C, M } = v;
       for (const mappingsKey in mappings) {
-        contentBuilder.push(
-          `${mappings[mappingsKey]}：${v[mappingsKey]}`,
-        );
+        contentBuilder.push(`${mappings[mappingsKey]}：${v[mappingsKey]}`);
       }
       return {
         id: NEW_DID,

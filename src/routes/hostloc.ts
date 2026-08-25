@@ -3,6 +3,8 @@ import { get } from "../utils/getData.js";
 import { parseRSS } from "../utils/parseRSS.js";
 import { getTime } from "../utils/getTime.js";
 
+export const title = "全球主机交流";
+
 const typeMap: Record<string, string> = {
   hot: "最新热门",
   digest: "最新精华",

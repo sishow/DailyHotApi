@@ -2,6 +2,8 @@ import type { RouterData, ListContext, Options } from "../types.js";
 import { getTime, getCurrentDateTime } from "../utils/getTime.js";
 import { get } from "../utils/getData.js";
 
+export const title = "新浪新闻";
+
 // 榜单类别
 const listType = {
   "1": {

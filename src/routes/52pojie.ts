@@ -4,6 +4,8 @@ import { getTime } from "../utils/getTime.js";
 import { parseRSS } from "../utils/parseRSS.js";
 import iconv from "iconv-lite";
 
+export const title = "吾爱破解";
+
 const typeMap: Record<string, string> = {
   digest: "最新精华",
   hot: "最新热门",

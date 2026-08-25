@@ -2,6 +2,8 @@ import type { ListContext, Options, RouterData } from "../types.js";
 import { get } from "../utils/getData.js";
 import { getTime } from "../utils/getTime.js";
 
+export const title = "什么值得买";
+
 const typeMap: Record<string, string> = {
   "1": "今日热门",
   "7": "周热门",
