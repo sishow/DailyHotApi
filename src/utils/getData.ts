@@ -4,11 +4,30 @@ import { getCache, setCache, delCache } from "./cache.js";
 import logger from "./logger.js";
 import axios from "axios";
 
+// 解析代理 URL
+const parseProxy = (proxyUrl: string) => {
+  if (!proxyUrl) return undefined;
+  try {
+    const url = new URL(proxyUrl);
+    const proxy: { host: string; port: number; auth?: { username: string; password: string } } = {
+      host: url.hostname,
+      port: parseInt(url.port) || (url.protocol === "https:" ? 443 : 80),
+    };
+    if (url.username && url.password) {
+      proxy.auth = { username: url.username, password: url.password };
+    }
+    return proxy;
+  } catch {
+    logger.error("❌ [ERROR] Invalid PROXY_URL format");
+    return undefined;
+  }
+};
+
 // 基础配置
 const request = axios.create({
-  // 请求超时设置
   timeout: config.REQUEST_TIMEOUT,
   withCredentials: true,
+  proxy: parseProxy(config.PROXY_URL),
 });
 
 // 请求拦截

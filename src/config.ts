@@ -18,6 +18,7 @@ export type Config = {
   REDIS_DB: number;
   ZHIHU_COOKIE: string;
   FILTER_WEIBO_ADVERTISEMENT: boolean;
+  PROXY_URL: string;
 };
 
 // 验证并提取环境变量
@@ -54,7 +55,8 @@ export const config: Config = {
   REDIS_HOST: getEnvVariable("REDIS_HOST") || "127.0.0.1",
   REDIS_PORT: getNumericEnvVariable("REDIS_PORT", 6379),
   REDIS_PASSWORD: getEnvVariable("REDIS_PASSWORD") || "",
-  REDIS_DB:  getNumericEnvVariable("REDIS_DB", 0),
+  REDIS_DB: getNumericEnvVariable("REDIS_DB", 0),
   ZHIHU_COOKIE: getEnvVariable("ZHIHU_COOKIE") || "",
   FILTER_WEIBO_ADVERTISEMENT: getBooleanEnvVariable("FILTER_WEIBO_ADVERTISEMENT", false),
+  PROXY_URL: getEnvVariable("PROXY_URL") || "",
 };

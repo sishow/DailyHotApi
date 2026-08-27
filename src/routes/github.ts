@@ -4,6 +4,8 @@ import * as cheerio from "cheerio";
 import { ListContext } from "../types";
 import logger from "../utils/logger.js";
 import { getCache, setCache } from "../utils/cache.js";
+import { config } from "../config.js";
+import { HttpsProxyAgent } from "https-proxy-agent";
 
 export const title = "github 趋势";
 
@@ -115,6 +117,9 @@ export async function getTrendingRepos(
   const maxRetries = 3;
   let lastError;
 
+  // 创建代理 agent
+  const agent = config.PROXY_URL ? new HttpsProxyAgent(config.PROXY_URL) : undefined;
+
   for (let i = 0; i < maxRetries; i++) {
     try {
       // 设置超时时间为 20 秒
@@ -124,6 +129,7 @@ export async function getTrendingRepos(
       const response = await fetch(url, {
         headers,
         signal: controller.signal,
+        agent,
       });
       clearTimeout(timeout);
 

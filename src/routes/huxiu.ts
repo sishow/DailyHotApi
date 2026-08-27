@@ -1,8 +1,26 @@
 import type { RouterData } from "../types.js";
 import { getTime } from "../utils/getTime.js";
+import { config } from "../config.js";
 import axios from "axios";
 
 export const title = "虎嗅";
+
+const parseProxy = (proxyUrl: string) => {
+  if (!proxyUrl) return undefined;
+  try {
+    const url = new URL(proxyUrl);
+    const proxy: { host: string; port: number; auth?: { username: string; password: string } } = {
+      host: url.hostname,
+      port: parseInt(url.port) || (url.protocol === "https:" ? 443 : 80),
+    };
+    if (url.username && url.password) {
+      proxy.auth = { username: url.username, password: url.password };
+    }
+    return proxy;
+  } catch {
+    return undefined;
+  }
+};
 
 export const handleRoute = async (_: undefined, noCache: boolean) => {
   const listData = await getList(noCache);
@@ -50,6 +68,7 @@ const getList = async (noCache: boolean) => {
       Referer: "https://www.huxiu.com/moment/",
     },
     timeout: 10000,
+    proxy: parseProxy(config.PROXY_URL),
   });
   const list = res.data?.data?.moment_list?.datalist || [];
   return {
